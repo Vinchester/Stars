@@ -1,2 +1,3 @@
 # Stars
-![Program preview](https://drive.google.com/file/d/16UggVH7iHtXqkfoMjs-uR9Z7UfVywoXQ/view?usp=sharing)
+# Preview photo
+![Program preview](https://github.com/Vinchester/Stars/blob/dev/image_2023-04-03_173811780.png)

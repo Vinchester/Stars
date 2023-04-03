@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Main {
+
+    volatile static boolean isFrameReadyToDraw = true;
+
     public static void main(String[] args) {
         final int screenWidth = 1200;
         final int screenHeight = 800;
@@ -22,6 +25,27 @@ public class Main {
         frame.getContentPane().add(picLabel, BorderLayout.CENTER);
 
         frame.setVisible(true);
+
+        Model model = new Model();
+        Render render = new Render();
+
+        long lastTime = System.currentTimeMillis();
+
+        while(frame.isVisible()){
+            long time = System.currentTimeMillis();
+            model.update(time - lastTime);
+            lastTime = time;
+
+            render.draw(image, model);
+            if(isFrameReadyToDraw){
+                isFrameReadyToDraw = false;
+                SwingUtilities.invokeLater(() -> {
+                    frame.repaint();
+                    isFrameReadyToDraw = true;
+                });
+            }
+
+        }
 
     }
 }
